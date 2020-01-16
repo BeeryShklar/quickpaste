@@ -1,0 +1,25 @@
+{
+  "name": "quickpaste",
+  "version": "1.0.0",
+  "description": "opens a gui where you can choose texts to copy",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "copy",
+    "paste",
+    "quick"
+  ],
+  "author": "Beery Shklar",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-packager": "^14.2.0"
+  },
+  "dependencies": {
+    "electron-store": "^5.1.0",
+    "jquery": "^3.4.1"
+  }
+}

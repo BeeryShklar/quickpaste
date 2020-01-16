@@ -1,0 +1,129 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #202020;
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: flex-start;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+body .option {
+  width: 100vw;
+  min-height: 20vh;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #202020;
+  color: white;
+  border-top: #2e2e2e solid 2px;
+  border-bottom: #2e2e2e solid 2px;
+  text-align: left;
+}
+
+body .option:hover {
+  background-color: #252525;
+  cursor: pointer;
+}
+
+body .copy--text {
+  height: 100%;
+  width: 100%;
+}
+
+body .add-icon--icon {
+  height: 20vh;
+  width: 100vw;
+  padding: 20px;
+  width: inherit;
+}
+
+body .add-icon:hover {
+  cursor: pointer;
+  background-color: #252525;
+}
+
+body .add-icon--input {
+  display: none;
+  width: 100vw;
+  height: inherit;
+  padding: 10px;
+  background-color: #2e2e2e;
+  border: none;
+  color: white;
+  font-family: inherit;
+}
+
+body .menu--container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #222222;
+}
+
+body .menu {
+  min-height: 10vh;
+  width: 100%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f1f1f1;
+  color: #202020;
+}
+
+body .menu:hover {
+  background-color: #e0e0e0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #202020;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #eeeeee;
+  border-radius: 100000px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #eeeeee;
+}
+/*# sourceMappingURL=style.css.map */
