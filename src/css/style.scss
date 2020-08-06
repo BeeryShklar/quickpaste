@@ -1,0 +1,122 @@
+$seperator: rgb(46, 46, 46);
+$scrollbar: rgb(238, 238, 238);
+$background: rgb(32, 32, 32);
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background-color: $background;
+
+  font-family: "Heebo", sans-serif;
+  font-weight: 300;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-content: center;
+
+  .option {
+    width: 100vw;
+    min-height: 20vh;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: $background;
+    color: white;
+    border-top: $seperator solid 2px;
+    border-bottom: $seperator solid 2px;
+
+    text-align: left;
+  }
+  .option:hover {
+    background-color: lighten($color: $background, $amount: 2);
+    cursor: pointer;
+  }
+
+  .copy--text {
+    height: 100%;
+    width: 100%;
+  }
+  .add-icon--icon {
+    height: 20vh;
+    width: 100vw;
+    padding: 20px;
+    width: inherit;
+  }
+  .add-icon:hover {
+    cursor: pointer;
+    background-color: lighten($color: $background, $amount: 2);
+  }
+  .add-icon--input {
+    display: none;
+    width: 100vw;
+    height: inherit;
+    padding: 10px;
+
+    background-color: $seperator;
+    border: none;
+
+    color: white;
+    font-family: inherit;
+  }
+  .menu--container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+  }
+  .menu {
+    min-height: 10vh;
+    width: 100%;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+
+    text-align: center;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(241, 241, 241);
+    color: rgb(32, 32, 32);
+  }
+  .menu:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+/////// scroll bar //////
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: $background;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scrollbar;
+  border-radius: 100000px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: darken($color: $scrollbar, $amount: 0.1);
+}
