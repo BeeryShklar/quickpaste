@@ -1,18 +1,11 @@
 @font-face {
-  src: url(./src/fonts/Heebo-Light.ttf);
-  font-family: "heebo";
-  font-weight: 300;
-}
-
-@font-face {
-  src: url(./src/fonts/Heebo-Medium.ttf);
-  font-family: "heebo";
+  src: url(../fonts/Assistant-Regular.ttf);
+  font-family: 'Assistant';
   font-weight: 400;
 }
 
 @font-face {
-  src: url(./src/fonts/Heebo-Regular.ttf);
-  font-family: "heebo";
+  src: url(../fonts/Assistant-Bold.ttf);
+  font-family: 'Assistant';
   font-weight: 500;
 }
-/*# sourceMappingURL=fonts.css.map */

@@ -5,11 +5,18 @@ const {
 	screen,
 	Tray,
 	Menu,
+	ipcMain,
+	MenuItem,
+	clipboard,
 } = require('electron')
 const path = require('path')
 const fs = require('fs')
+const { uniqueUuid, store } = require('./src/js/helpers.js')
 
 let mainWindow
+let tray
+let ctxMenu
+
 function createMainWindow() {
 	mainWindow = new BrowserWindow({
 		width: 250,
@@ -30,12 +37,17 @@ function createMainWindow() {
 		mainWindow = null
 		app.quit()
 	})
+
+	mainWindow.on('blur', () => {
+		mainWindow.hide()
+	})
 }
 
 // Init app
 app.on('ready', () => {
 	createMainWindow()
 	initTray()
+	initCtxMenu()
 	registerGlobalShortcuts()
 })
 
@@ -47,11 +59,15 @@ app.on('activate', () => {
 	if (mainWindow === null) createMainWindow()
 })
 
+function quitApp() {
+	app.quit()
+}
+
 function initTray() {
-	let tray = new Tray(path.join(__dirname, 'src', 'img', 'icon.ico'))
+	tray = new Tray(path.join(__dirname, 'src', 'img', 'icon.ico'))
 	tray.on('click', onTrayClick)
 
-	const { menu, tooltip } = getTrayOptions()
+	const { menu, tooltip } = generateTrayOptions()
 	tray.setContextMenu(menu)
 	tray.setToolTip(tooltip)
 }
@@ -63,9 +79,13 @@ function onTrayClick(event, iconBounds, position) {
 	mainWindow.show()
 }
 
-function getTrayOptions() {
+function generateTrayOptions() {
 	return {
 		menu: Menu.buildFromTemplate([
+			{
+				label: 'Import Old Items',
+				click: importOldItems,
+			},
 			{
 				label: 'Show',
 				click: () => {
@@ -74,14 +94,51 @@ function getTrayOptions() {
 			},
 			{
 				label: 'Quit',
-				click: () => {
-					app.quit()
-				},
+				click: quitApp,
 			},
 		]),
 		tooltip: 'Quickpaste - A GUI for saving the common things you type',
 	}
 }
+
+function initCtxMenu() {
+	ctxMenu = new Menu.buildFromTemplate([
+		{
+			label: 'Hide Window',
+			click: () => {
+				mainWindow.hide()
+			},
+		},
+		{
+			label: 'Quit',
+			click: quitApp,
+		},
+	])
+}
+
+ipcMain.on('ctxmenu:show', (event, msg) => {
+	if (msg.ID) {
+		const separator = new MenuItem({
+			type: 'separator',
+		})
+		const menuItem = new MenuItem({
+			label: 'Delete Item',
+			click: () => {
+				event.reply('delete-item', msg.ID)
+				initCtxMenu()
+			},
+		})
+		ctxMenu.insert(0, separator)
+		ctxMenu.insert(0, menuItem)
+	}
+	ctxMenu.popup()
+	initCtxMenu()
+})
+
+ipcMain.on('copy-and-hide', (event, text) => {
+	clipboard.writeText(text)
+	mainWindow.hide()
+})
 
 // Setup Global Shortcuts
 function registerGlobalShortcuts() {
@@ -110,4 +167,16 @@ function moveMainWindowToPos(display, x, y) {
 
 function getNearestDisplay(point) {
 	return screen.getDisplayNearestPoint(point)
+}
+
+let replyToReload
+ipcMain.on('ready-to-reload', event => (replyToReload = event.reply))
+
+// Import all the items from the previous version
+function importOldItems() {
+	const oldItems = store.get('texts')
+	oldItems.forEach(item => {
+		store.set('items.' + uniqueUuid(), item)
+		replyToReload('reload-items')
+	})
 }

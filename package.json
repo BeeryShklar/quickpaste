@@ -4,7 +4,8 @@
 	"description": "A GUI for saving the common things you type",
 	"main": "main.js",
 	"scripts": {
-		"start": "electron ."
+		"start": "electron .",
+		"package-win": "electron-packager . quickpaste --overwrite --asar --platform=win32 --arch=ia32 --icon=src/img/icon.ico --prune=true --out=release-builds --version-string.CompanyName=\"Beery Shklar\" --version-string.FileDescription=1.0.1 --version-string.ProductName=\"quickpaste\""
 	},
 	"repository": "https://github.com/beeryshklar/quickpaste",
 	"keywords": [
@@ -22,7 +23,7 @@
 		"electron-packager": "^14.2.0"
 	},
 	"dependencies": {
-		"electron-store": "^5.1.0",
-		"jquery": "^3.5.0"
+		"electron-store": "^5.2.0",
+		"uuid": "^8.3.0"
 	}
 }
