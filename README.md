@@ -1,6 +1,6 @@
 # quickpaste
 
-**A GUI for saving the common things you type**
+**A GUI for savingand copying the common things you type**
 
 ## How to use the app
 
