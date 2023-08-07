@@ -1,4 +1,4 @@
-# quickpaste
+# Quickpaste (Repository is archived)
 
 **A GUI for saving and copying the common things you type**
 
